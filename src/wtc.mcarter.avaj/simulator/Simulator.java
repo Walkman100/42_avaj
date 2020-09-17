@@ -23,7 +23,7 @@ public class Simulator {
 
                 int simulations = Integer.parseInt(line.split(" ")[0]);
                 if (simulations < 0) {
-                    System.out.println("Invalid simulations count: " + simulations);
+                    WriteLine("Invalid simulations count: " + simulations);
                     System.exit(1);
                 }
 
@@ -41,16 +41,19 @@ public class Simulator {
                 for (int i = 1; i <= simulations; i++) {
                     weatherTower.changeWeather();
                 }
-
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Couldn't find file: " + arg[0]);
+            WriteLine("Couldn't find file: " + arg[0]);
         } catch (IOException e) {
-            System.out.println("There was an error while reading the file: " + arg[0]);
+            WriteLine("There was an error while reading the file: " + arg[0]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Specify simulation file!");
+            WriteLine("Specify simulation file!");
         } finally {
             Logger.getLogger().close();
         }
+    }
+
+    private static void WriteLine(String line) {
+        System.out.println(line);
     }
 }
