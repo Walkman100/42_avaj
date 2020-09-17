@@ -1,1 +1,1 @@
-java wtc.mcarter.avaj.simulator.Simulator scenario.txt
+@java wtc.mcarter.avaj.simulator.Simulator scenario.txt
