@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wtc.mcarter.avaj.simulator.vehicles.AircraftFactory;
+import wtc.mcarter.avaj.simulator.vehicles.AircraftTypeNotFoundException;
 import wtc.mcarter.avaj.simulator.vehicles.Flyable;
 
 public class Simulator {
@@ -48,6 +49,8 @@ public class Simulator {
             WriteLine("There was an error while reading the file: " + arg[0]);
         } catch (ArrayIndexOutOfBoundsException e) {
             WriteLine("Specify simulation file!");
+        } catch (AircraftTypeNotFoundException e) {
+            WriteLine("Invalid simulation file! Error: " + e.getMessage());
         } finally {
             Logger.getLogger().close();
         }
