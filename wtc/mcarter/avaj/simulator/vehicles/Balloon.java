@@ -10,11 +10,33 @@ public class Balloon extends Aircraft implements Flyable {
         super(name, coordinates);
     }
 
-    public void updateConditions() {
-        //
+    public void registerTower(WeatherTower WeatherTower) {
+        WeatherTower.register(this);
+        weatherTower = WeatherTower;
     }
 
-    public void registerTower(WeatherTower WeatherTower) {
-        //
+    private void checkCoords() {
+        if (coordinates.getHeight() == 0) {
+            weatherTower.unregister(this);
+        }
+    }
+
+    public void updateConditions() {
+        switch (weatherTower._getWeather(coordinates)) {
+            case SUN:
+                coordinates = new Coordinates(coordinates.getLongitude() + 2, coordinates.getLatitude(), coordinates.getHeight() + 4);
+                break;
+            case RAIN:
+                coordinates = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight() - 5);
+                break;
+            case FOG:
+                coordinates = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight() - 3);
+                break;
+            case SNOW:
+                coordinates = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight() - 15);
+                break;
+        }
+
+        checkCoords();
     }
 }
