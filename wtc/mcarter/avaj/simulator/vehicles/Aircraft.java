@@ -27,7 +27,8 @@ public class Aircraft {
     }
 
     public void writeLandingMessage() {
-        Logger.gL().writeMessage(this.toString() + " landing.");
+        Logger.gL().writeMessage(this.toString() + " landing at Y:" + coordinates.getLongitude() + " X:"
+                + coordinates.getLatitude() + " Z:" + coordinates.getHeight() + ".");
     }
 
     public void writeStatusMessage(WeatherTower weatherTower) {

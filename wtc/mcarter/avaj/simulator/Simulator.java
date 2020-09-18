@@ -53,6 +53,8 @@ public class Simulator {
             Logger.gL().writeLine("Specify simulation file!");
         } catch (AircraftTypeNotFoundException e) {
             Logger.gL().writeLine("Invalid simulation file! Error: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            Logger.gL().writeLine("Invalid simulation file! Error: " + e.getMessage());
         } finally {
             Logger.getLogger().close();
         }
