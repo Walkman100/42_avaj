@@ -8,7 +8,11 @@ public class WeatherTower extends Tower {
         return WeatherProvider.getProvider().getCurrentWeather(coordinates);
     }
 
+    public WeatherProvider.WeatherType _getWeather(Coordinates coordinates) {
+        return WeatherProvider.getProvider()._getCurrentWeather(coordinates);
+    }
+
     protected void changeWeather() {
-        //
+        super.conditionsChanged();
     }
 }
