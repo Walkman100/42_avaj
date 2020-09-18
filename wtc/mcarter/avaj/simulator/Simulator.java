@@ -24,7 +24,7 @@ public class Simulator {
 
                 int simulations = Integer.parseInt(line.split(" ")[0]);
                 if (simulations < 0) {
-                    WriteLine("Invalid simulations count: " + simulations);
+                    Logger.gL().writeLine("Invalid simulations count: " + simulations);
                     System.exit(1);
                 }
 
@@ -46,19 +46,15 @@ public class Simulator {
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            WriteLine("Couldn't find file: " + arg[0]);
+            Logger.gL().writeLine("Couldn't find file: " + arg[0]);
         } catch (IOException e) {
-            WriteLine("There was an error while reading the file: " + arg[0]);
+            Logger.gL().writeLine("There was an error while reading the file: " + arg[0]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            WriteLine("Specify simulation file!");
+            Logger.gL().writeLine("Specify simulation file!");
         } catch (AircraftTypeNotFoundException e) {
-            WriteLine("Invalid simulation file! Error: " + e.getMessage());
+            Logger.gL().writeLine("Invalid simulation file! Error: " + e.getMessage());
         } finally {
             Logger.getLogger().close();
         }
-    }
-
-    private static void WriteLine(String line) {
-        System.out.println(line);
     }
 }

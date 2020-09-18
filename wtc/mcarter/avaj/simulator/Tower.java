@@ -11,10 +11,12 @@ public class Tower {
     }
 
     public void register(Flyable flyable) {
+        Logger.gL().writeTowerRegistered(flyable.toString());
         observers.add(flyable);
     }
 
     public void unregister(Flyable flyable) {
+        Logger.gL().writeTowerUnregistered(flyable.toString());
         observers.remove(flyable);
     }
 

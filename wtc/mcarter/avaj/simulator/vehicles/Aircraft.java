@@ -18,4 +18,9 @@ public class Aircraft {
         idCounter++;
         return idCounter;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + "#" + name + "(" + id + ")";
+    }
 }
