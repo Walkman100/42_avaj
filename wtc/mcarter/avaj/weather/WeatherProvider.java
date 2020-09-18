@@ -1,7 +1,7 @@
 package wtc.mcarter.avaj.weather;
 
 public class WeatherProvider {
-    // static
+// #region static
     private static WeatherProvider weatherProvider;
     private static String[] weather = {
         WeatherType.RAIN.name(),
@@ -18,17 +18,15 @@ public class WeatherProvider {
     }
 
     public enum WeatherType {
-        RAIN,
-        FOG,
-        SUN,
-        SNOW
+        RAIN, FOG, SUN, SNOW
     }
+// #endregion
 
-    // instance
+// #region instance
     public WeatherType _getCurrentWeather(Coordinates coordinates) {
         int index = coordinates.getLatitude();
-        index *= coordinates.getLongitude();
-        index += coordinates.getHeight();
+        index += coordinates.getLongitude() % 10;
+        index += coordinates.getHeight() * 3;
 
         if (index > 3) { // remove the extra multiple of 4 from index to bind to (0-3)
             index = index % 4;
@@ -40,4 +38,5 @@ public class WeatherProvider {
     public String getCurrentWeather(Coordinates coordinates) {
         return _getCurrentWeather(coordinates).name();
     }
+// #endregion
 }
