@@ -17,11 +17,13 @@ public class JetPlane extends Aircraft implements Flyable {
 
     private void checkCoords() {
         if (coordinates.getHeight() == 0) {
+            super.writeLandingMessage();
             weatherTower.unregister(this);
         }
     }
 
     public void updateConditions() {
+        super.writeStatusMessage(weatherTower);
         switch (weatherTower._getWeather(coordinates)) {
             case SUN:
                 coordinates = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude() + 10, coordinates.getHeight() + 2);

@@ -17,11 +17,13 @@ public class Helicopter extends Aircraft implements Flyable {
 
     private void checkCoords() {
         if (coordinates.getHeight() == 0) {
+            super.writeLandingMessage();
             weatherTower.unregister(this);
         }
     }
 
     public void updateConditions() {
+        super.writeStatusMessage(weatherTower);
         switch (weatherTower._getWeather(coordinates)) {
             case SUN:
                 coordinates = new Coordinates(coordinates.getLongitude() + 10, coordinates.getLatitude(), coordinates.getHeight() + 2);
