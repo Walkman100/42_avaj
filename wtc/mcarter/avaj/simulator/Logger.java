@@ -1,6 +1,10 @@
 package wtc.mcarter.avaj.simulator;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Logger {
+// #region static
     private static Logger logger;
     public static Logger getLogger() {
         if (logger == null) {
@@ -13,9 +17,25 @@ public class Logger {
     public static Logger gL() {
         return getLogger();
     }
+// #endregion
+
+    private FileWriter fileWriter;
+
+    public Logger() {
+        try {
+            fileWriter = new FileWriter("simulation.txt");
+        } catch (IOException e) {
+            writeLine("Couldn't create file 'simulation.txt' in the current directory!");
+            System.exit(1);
+        }
+    }
 
     public void close() {
-        //
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+            writeLine("There was an error closing the log file!");
+        }
     }
 
 //#region Base
@@ -30,7 +50,13 @@ public class Logger {
      * Writes a message to the log file
      */
     public void writeMessage(String message) {
-        System.out.println(message);
+        try {
+            fileWriter.write(message);
+            fileWriter.write(System.lineSeparator());
+        } catch (IOException e) {
+            writeLine("Error writing to log file:");
+            e.printStackTrace();
+        }
     }
 //#endregion
 
